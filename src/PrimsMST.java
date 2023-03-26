@@ -39,4 +39,9 @@ public class PrimsMST extends MST {
   public Iterable<Edge> edges() {
     return mst;
   }
+
+  @Override
+  public int weight() {
+    return -1;
+  }
 }

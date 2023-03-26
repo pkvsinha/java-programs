@@ -1,6 +1,6 @@
-import java.util.Queue;
+import java.util.Stack;
 
-public class PrimsEager {
+public class PrimsEager extends MST {
 
   private Edge[] edgeTo;
   private int[] distTo;
@@ -8,6 +8,7 @@ public class PrimsEager {
   private IndexMinPQ<Integer> pq;
   
   public PrimsEager(EdgeWeightedGraph graph) {
+    super(graph);
     edgeTo = new Edge[graph.V()];
     distTo = new int[graph.V()];
     marked = new boolean[graph.V()];
@@ -15,6 +16,11 @@ public class PrimsEager {
       distTo[i] = Integer.MAX_VALUE;
     }
     pq = new IndexMinPQ<>(graph.V());
+    build(graph);
+  }
+
+  @Override
+  protected void build(EdgeWeightedGraph graph) {
     distTo[0] = 0;
     pq.insert(0, 0);
     while (!pq.isEmpty()) visit(graph, pq.removeMin());
@@ -32,5 +38,19 @@ public class PrimsEager {
         else pq.insert(w, distTo[w]);
       }
     }
+  }
+
+  @Override
+  public Iterable<Edge> edges() {
+    Stack<Edge> mst = new Stack<>();
+    for (var e : edgeTo) {
+      
+    }
+    return mst;
+  }
+
+  @Override
+  public int weight() {
+    return -1;
   }
 }

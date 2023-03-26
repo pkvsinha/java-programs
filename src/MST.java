@@ -6,11 +6,7 @@ public abstract class MST {
 
   protected abstract void build(EdgeWeightedGraph graph);
 
-  public Iterable<Edge> edges() {
-    return null;
-  }
+  public abstract Iterable<Edge> edges();
 
-  public int weight() {
-    return -1;
-  }
+  public abstract int weight();
 }
