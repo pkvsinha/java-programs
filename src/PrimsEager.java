@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class PrimsEager extends MST {
@@ -8,7 +10,6 @@ public class PrimsEager extends MST {
   private IndexMinPQ<Integer> pq;
   
   public PrimsEager(EdgeWeightedGraph graph) {
-    super(graph);
     edgeTo = new Edge[graph.V()];
     distTo = new int[graph.V()];
     marked = new boolean[graph.V()];
@@ -42,15 +43,21 @@ public class PrimsEager extends MST {
 
   @Override
   public Iterable<Edge> edges() {
-    Stack<Edge> mst = new Stack<>();
-    for (var e : edgeTo) {
-      
+    List<Edge> treeEdges = new ArrayList<>();
+    // 0  1  2   3   4   5   6
+    //   01  02  13  24  35  56
+    for (Edge edge : edgeTo) {
+      if (edge != null) treeEdges.add(edge);
     }
-    return mst;
+    return treeEdges;
   }
 
   @Override
   public int weight() {
-    return -1;
+    int weight = 0;
+    for (int dist : distTo) {
+      weight += dist;
+    }
+    return weight;
   }
 }

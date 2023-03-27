@@ -6,10 +6,10 @@ public class PrimsMST extends MST {
 
   private boolean[] marked;
   private Queue<Edge> mst;
+  private int weight;
   private PriorityQueue<Edge> pq;
 
   public PrimsMST(EdgeWeightedGraph graph) {
-    super(graph);
     this.marked = new boolean[graph.V()];
     this.mst = new ArrayDeque<>();
     this.pq = new PriorityQueue<>();
@@ -23,6 +23,7 @@ public class PrimsMST extends MST {
       int v = e.either(), w = e.other(v);
       if (marked[v] && marked[w]) continue;
       mst.add(e);
+      weight += e.weight();
       if (!marked[v]) visit(graph, v);
       if (!marked[w]) visit(graph, w);
     }
@@ -42,6 +43,6 @@ public class PrimsMST extends MST {
 
   @Override
   public int weight() {
-    return -1;
+    return weight;
   }
 }

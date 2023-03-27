@@ -3,10 +3,27 @@ public class MSTTestClient {
   public static void main(String[] args) {
     EdgeWeightedGraph graph = buildGraph();
     MST mst = new PrimsMST(graph);
+    System.out.println("-------- Lazy Prims ------ ");
     for (Edge e : mst.edges()) {
       System.out.println(e);
     }
     System.out.println(mst.weight());
+    System.out.println("----------------------------");
+    MST mstEager = new PrimsEager(graph);
+    System.out.println("-------- Eager Prims ------ ");
+    for (Edge e : mstEager.edges()) {
+      System.out.println(e);
+    }
+    System.out.println(mstEager.weight());
+
+    System.out.println("----------------------------");
+    MST mstKrukshal = new KrukshalMST(graph);
+    System.out.println("-------- Krukshal ------ ");
+    for (Edge e : mstKrukshal.edges()) {
+      System.out.println(e);
+    }
+    System.out.println(mstKrukshal.weight());
+    System.out.println("----------------------------");
   }
 
   private static EdgeWeightedGraph buildGraph() {
